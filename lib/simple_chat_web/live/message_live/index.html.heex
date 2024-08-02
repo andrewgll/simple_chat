@@ -1,0 +1,57 @@
+<.flash_group flash={@flash} />
+<div class="px-4 py-10 sm:px-6 sm:py-28 lg:px-8 xl:px-28 xl:py-32 flex justify-between">
+  <div class="mx-auto max-w-xl lg:mx-0">
+    <h1 class="text-brand mt-10 flex items-center text-sm font-semibold leading-6">
+      Live Web Chat
+      <small class="bg-brand/5 text-[0.8125rem] ml-3 rounded-full px-2 font-medium leading-6">
+        v1.0
+      </small>
+    </h1>
+    <p class="text-[2rem] mt-4 font-semibold leading-10 tracking-tighter text-zinc-900 text-balance">
+      The simplest Live Chat⚡
+    </p>
+    <p class="mt-4 text-base leading-7 text-zinc-600">
+      Nevertheless, this chat can handle up to 100 thousand users simultaneously
+    </p>
+    <p class="text-base leading-7 text-zinc-600">
+      Interested how I did it? <.link
+        navigate="https://www.linkedin.com/in/andrii-hladkyi-ml/"
+        class=" text-brand hover:underline"
+      >
+        Write me
+      </.link>.
+    </p>
+  </div>
+  <div class="mx-auto max-w-sm">
+    <.header class="mt-14">
+      Register for an account
+      <:subtitle>
+        Already registered?
+        <.link navigate={~p"/users/log_in"} class="font-semibold text-brand hover:underline">
+          Log in
+        </.link>
+        to your account now.
+      </:subtitle>
+    </.header>
+    <%!-- <.simple_form
+        for={@form}
+        id="registration_form"
+        phx-submit="save"
+        phx-change="validate"
+        phx-trigger-action={@trigger_submit}
+        action={~p"/users/log_in?_action=registered"}
+        method="post"
+      >
+        <.error :if={@check_errors}>
+          Oops, something went wrong! Please check the errors below.
+        </.error>
+
+        <.input field={@form[:username]} type="username" label="Username" required />
+        <.input field={@form[:password]} type="password" label="Password" required />
+
+        <:actions>
+          <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+        </:actions>
+      </.simple_form> --%>
+  </div>
+</div>
