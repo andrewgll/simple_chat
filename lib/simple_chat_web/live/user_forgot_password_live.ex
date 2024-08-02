@@ -1,7 +1,6 @@
 defmodule SimpleChatWeb.UserForgotPasswordLive do
   use SimpleChatWeb, :live_view
 
-  alias SimpleChat.Accounts
 
   def render(assigns) do
     ~H"""
@@ -20,8 +19,8 @@ defmodule SimpleChatWeb.UserForgotPasswordLive do
         </:actions>
       </.simple_form>
       <p class="text-center text-sm mt-4">
-        <.link href={~p"/users/register"}>Register</.link>
-        | <.link href={~p"/users/log_in"}>Log in</.link>
+        <%!-- <.link href={~p"/users/register"}>Register</.link> --%>
+        <%!-- | <.link href={~p"/users/log_in"}>Log in</.link> --%>
       </p>
     </div>
     """
@@ -31,20 +30,20 @@ defmodule SimpleChatWeb.UserForgotPasswordLive do
     {:ok, assign(socket, form: to_form(%{}, as: "user"))}
   end
 
-  def handle_event("send_username", %{"user" => %{"username" => username}}, socket) do
-    if user = Accounts.get_user_by_username(username) do
-      Accounts.deliver_user_reset_password_instructions(
-        user,
-        &url(~p"/users/reset_password/#{&1}")
-      )
-    end
+  # def handle_event("send_username", %{"user" => %{"username" => username}}, socket) do
+  #   if user = Accounts.get_user_by_username(username) do
+  #     # Accounts.deliver_user_reset_password_instructions(
+  #     #   user,
+  #     #   &url(~p"/users/reset_password/#{&1}")
+  #     # )
+  #   end
 
-    info =
-      "If your username is in our system, you will receive instructions to reset your password shortly."
+  #   info =
+  #     "If your username is in our system, you will receive instructions to reset your password shortly."
 
-    {:noreply,
-     socket
-     |> put_flash(:info, info)
-     |> redirect(to: ~p"/")}
-  end
+  #   {:noreply,
+  #    socket
+  #    |> put_flash(:info, info)
+  #    |> redirect(to: ~p"/")}
+  # end
 end

@@ -156,7 +156,7 @@ defmodule SimpleChatWeb.UserAuth do
       socket =
         socket
         |> Phoenix.LiveView.put_flash(:error, "You must log in to access this page.")
-        |> Phoenix.LiveView.redirect(to: ~p"/users/log_in")
+        |> Phoenix.LiveView.redirect(to: ~p"/user/log_in")
 
       {:halt, socket}
     end

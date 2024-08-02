@@ -8,7 +8,13 @@ defmodule SimpleChatWeb.ChatLive do
   end
 
   def handle_event("send_message", %{"message" => message}, socket) do
-    messages = socket.assigns.messages ++ [message]
-    {:noreply, assign(socket, messages: messages)}
+    trimmed_message = String.trim(message)
+
+    if trimmed_message != "" do
+      messages = socket.assigns.messages ++ [trimmed_message]
+      {:noreply, assign(socket, messages: messages)}
+    else
+      {:noreply, socket}
+    end
   end
 end

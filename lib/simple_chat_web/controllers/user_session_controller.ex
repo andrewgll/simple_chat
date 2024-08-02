@@ -10,7 +10,7 @@ defmodule SimpleChatWeb.UserSessionController do
 
   def create(conn, %{"_action" => "password_updated"} = params) do
     conn
-    |> put_session(:user_return_to, ~p"/user/settings")
+    # |> put_session(:user_return_to, ~p"/user/settings")
     |> create(params, "Password updated successfully!")
   end
 

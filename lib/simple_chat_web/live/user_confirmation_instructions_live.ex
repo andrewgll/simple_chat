@@ -1,7 +1,6 @@
 defmodule SimpleChatWeb.UserConfirmationInstructionsLive do
   use SimpleChatWeb, :live_view
 
-  alias SimpleChat.Accounts
 
   def render(assigns) do
     ~H"""
@@ -21,8 +20,8 @@ defmodule SimpleChatWeb.UserConfirmationInstructionsLive do
       </.simple_form>
 
       <p class="text-center mt-4">
-        <.link href={~p"/users/register"}>Register</.link>
-        | <.link href={~p"/users/log_in"}>Log in</.link>
+        <%!-- <.link href={~p"/users/register"}>Register</.link>
+        | <.link href={~p"/users/log_in"}>Log in</.link> --%>
       </p>
     </div>
     """
@@ -32,20 +31,20 @@ defmodule SimpleChatWeb.UserConfirmationInstructionsLive do
     {:ok, assign(socket, form: to_form(%{}, as: "user"))}
   end
 
-  def handle_event("send_instructions", %{"user" => %{"username" => username}}, socket) do
-    if user = Accounts.get_user_by_username(username) do
-      Accounts.deliver_user_confirmation_instructions(
-        user,
-        &url(~p"/users/confirm/#{&1}")
-      )
-    end
+  # def handle_event("send_instructions", %{"user" => %{"username" => username}}, socket) do
+  #   # if user = Accounts.get_user_by_username(username) do
+  #   #   Accounts.deliver_user_confirmation_instructions(
+  #   #     user,
+  #   #     &url(~p"/users/confirm/#{&1}")
+  #   #   )
+  #   # end
 
-    info =
-      "If your username is in our system and it has not been confirmed yet, you will receive an username with instructions shortly."
+  #   info =
+  #     "If your username is in our system and it has not been confirmed yet, you will receive an username with instructions shortly."
 
-    {:noreply,
-     socket
-     |> put_flash(:info, info)
-     |> redirect(to: ~p"/")}
-  end
+  #   {:noreply,
+  #    socket
+  #    |> put_flash(:info, info)
+  #    |> redirect(to: ~p"/")}
+  # end
 end
